@@ -1,2 +1,2 @@
 # ccm-managed-app
-CCM Azure managed application 
+CCM Azure managed application swagger definitions
