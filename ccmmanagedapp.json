@@ -1,0 +1,338 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "2018-08-14-preview",
+        "title": "CCM Managed Application",
+        "description": "Confidential Computing Manager Logic Application API specification"
+    },
+    "host": "management.azure.com",
+    "schemes": [
+        "https"
+    ],
+    "security": [],
+    "securityDefinitions": {},
+    "paths": {
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomProviders/resourceproviders/public/fortanixComputeNodeAgent/{customresourceid}": {
+            "put": {
+                "tags": [
+                    "CCMManagedApp"
+                ],
+                "operationId": "CustomProvidersCCMManagedApp_PUT",
+                "description": "Creates or updates a CCM Managed App",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "name": "resourceGroupName",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "The name of the resource group. The name is case insensitive.",
+                        "pattern": "^[-\\w\\._\\(\\)]+$",
+                        "minLength": 1,
+                        "maxLength": 90
+                    },
+                    {
+                        "$ref": "#/parameters/CustomResourceIdParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    },
+                    {
+                        "name": "parameters",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/FortanixComputeNodeRequestBody"
+                        },
+                        "description": "The fortanix compute node resources to create"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                    "description": "OK response definition",
+                        "schema": {
+                            "$ref": "#/definitions/FortanixComputeNodeResponse"
+                        }
+                    },
+                    "default": {
+                        "schema": {
+                            "$ref": "#/definitions/CodeMessageError"
+                        },
+                        "description": "Error response definition."
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "CCMManagedApp"
+                ],
+                "operationId": "CustomProvidersCCMManagedApp_DELETE",
+                "description": "Deletes a CCM Managed Application",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "name": "resourceGroupName",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "The name of the resource group. The name is case insensitive.",
+                        "pattern": "^[-\\w\\._\\(\\)]+$",
+                        "minLength": 1,
+                        "maxLength": 90
+                    },
+                    {
+                        "$ref": "#/parameters/CustomResourceIdParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK response definition."
+                    },
+                    "204": {
+                        "description": "OK resource was not found."
+                    },
+                    "default": {
+                        "schema": {
+                            "$ref": "#/definitions/CodeMessageError"
+                        },
+                        "description": "Error response definition."
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            },
+            "get": {
+                "tags": [
+                    "CCMManagedApp"
+                ],
+                "operationId": "CustomProvidersCCMManagedApp_GET",
+                "description": "Gets a CCM Managed Application",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "name": "resourceGroupName",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "The name of the resource group. The name is case insensitive.",
+                        "pattern": "^[-\\w\\._\\(\\)]+$",
+                        "minLength": 1,
+                        "maxLength": 90
+                    },
+                    {
+                        "$ref": "#/parameters/CustomResourceIdParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK response definition.",
+                        "schema": {
+                            "$ref": "#/definitions/FortanixComputeNodeResponse"
+                        }
+                    },
+                    "default": {
+                        "schema": {
+                            "$ref": "#/definitions/CodeMessageError"
+                        },
+                        "description": "Error response definition."
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "CodeMessageError": {
+            "properties": {
+                "error": {
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "type": "string",
+                            "description": "The error type."
+                        },
+                        "message": {
+                            "type": "string",
+                            "description": "The error message."
+                        }
+                    },
+                    "description": "The error details for a failed request."
+                }
+            },
+            "description": "The error body contract."
+        },
+        "FortanixComputeNodeRequestBody": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Resource Id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Resource name"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Resource type"
+                },
+                "properties" :{
+                    "type": "object",
+                    "description":"The definition of a created user",
+                    "properties":{
+                        "fortanixComputeNodeAgentRegion": {
+                            "type": "string",
+                            "description": "Location of CCM Node"
+                        },
+                        "vmName": {
+                            "type": "string",
+                            "description": "Name of CCM Node"
+                        },
+                        "adminUsername": {
+                            "type": "string",
+                            "description": "Name of admin corresponding to CCM Node"
+                        },
+                        "adminPasswordOrKey": {
+                            "type": "string",
+                            "description": "Password or Public Key"
+                        },
+                        "authenticationType": {
+                            "type": "string",
+                            "description": "Type of authentication to be used for CCM Node"
+                        },
+                        "osDiskSize": {
+                            "type": "integer",
+                            "description": "Size of OS Disk corresponding to CCM Node"
+                        },
+                        "vmSize": {
+                            "type": "string",
+                            "description": "Size of CCM Node"
+                        },
+                        "joinToken": {
+                            "type": "string",
+                            "description": "Join Token"
+                        }
+                    }
+                }
+            },            
+            "description": "The request body parameters for fortanix compute node to be created"
+        },
+        "FortanixComputeNodeResponse": {
+            "properties": {
+                "properties": {
+                    "type": "object",
+                    "description":"The definition of a created fortanix compute node",
+                    "properties": {
+                        "provisioningState": {
+                            "type": "string",
+                            "description": "Provisioning State of the deployment"
+                        },
+                        "fortanixComputeNodeAgentRegion": {
+                            "type": "string",
+                            "description": "Location of CCM Node"
+                        },
+                        "vmName": {
+                            "type": "string",
+                            "description": "Name of CCM Node"
+                        },
+                        "adminUsername": {
+                            "type": "string",
+                            "description": "Name of admin corresponding to CCM Node"
+                        },
+                        "authenticationType": {
+                            "type": "string",
+                            "description": "Type of authentication to be used for CCM Node"
+                        },
+                        "osDiskSize": {
+                            "type": "integer",
+                            "description": "Size of OS Disk corresponding to CCM Node"
+                        },
+                        "vmSize": {
+                            "type": "string",
+                            "description": "Size of CCM Node"
+                        },
+                        "deploymentHash": {
+                            "type": "string",
+                            "description": "Hash of the deployment"
+                        }
+                    }
+                }
+            },
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CommonResource"
+                }
+            ]
+        },
+        "CommonResource": {
+            "properties": {
+                "id": {
+                    "readOnly": true,
+                    "type": "string",
+                    "description": "Resource Id"
+                },
+                "name": {
+                    "readOnly": true,
+                    "type": "string",
+                    "description": "Resource name"
+                },
+                "type": {
+                    "readOnly": true,
+                    "type": "string",
+                    "description": "Resource type"
+                }
+            },
+            "description": "The resource definition.",
+            "x-ms-azure-resource": true
+        }
+    },
+    "parameters": {
+        "SubscriptionIdParameter": {
+            "name": "subscriptionId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+        },
+        "ApiVersionParameter": {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Client Api Version."
+        },
+        "CustomResourceIdParameter": {
+            "name": "customresourceid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The ID of the Custom Resource."
+        }
+    }
+}
