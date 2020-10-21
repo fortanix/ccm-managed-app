@@ -3,7 +3,12 @@
     "info": {
         "version": "2018-08-14-preview",
         "title": "CCM Managed Application",
-        "description": "Confidential Computing Manager Logic Application API specification"
+        "description": "Confidential Computing Manager Managed Application API specification",
+        "contact": {
+            "name": "Fortanix Support",
+            "url": "https://support.fortanix.com/hc/en-us/categories/360003107511-Fortanix-Enclave-Manager",
+            "email": "support@fortanix.com"
+        }
     },
     "host": "management.azure.com",
     "schemes": [
@@ -12,7 +17,7 @@
     "security": [],
     "securityDefinitions": {},
     "paths": {
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomProviders/resourceproviders/public/fortanixComputeNodeAgent/{customresourceid}": {
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomProviders/resourceproviders/public/ccmComputeNodeAgent/{customresourceid}": {
             "put": {
                 "tags": [
                     "CCMManagedApp"
@@ -44,16 +49,16 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/FortanixComputeNodeRequestBody"
+                            "$ref": "#/definitions/CCMNodeRequestBody"
                         },
-                        "description": "The fortanix compute node resources to create"
+                        "description": "It defines the parameters to be present in request body"
                     }
                 ],
                 "responses": {
                     "200": {
                     "description": "OK response definition",
                         "schema": {
-                            "$ref": "#/definitions/FortanixComputeNodeResponse"
+                            "$ref": "#/definitions/CCMNodeResponse"
                         }
                     },
                     "default": {
@@ -149,7 +154,7 @@
                     "200": {
                         "description": "OK response definition.",
                         "schema": {
-                            "$ref": "#/definitions/FortanixComputeNodeResponse"
+                            "$ref": "#/definitions/CCMNodeResponse"
                         }
                     },
                     "default": {
@@ -188,7 +193,7 @@
             },
             "description": "The error body contract."
         },
-        "FortanixComputeNodeRequestBody": {
+        "CCMNodeRequestBody": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -206,21 +211,21 @@
                     "type": "object",
                     "description":"The definition of a created user",
                     "properties":{
-                        "fortanixComputeNodeAgentRegion": {
+                        "ccmComputeNodeRegion": {
                             "type": "string",
-                            "description": "Location of CCM Node"
+                            "description": "Location of CCM Node to be created"
                         },
                         "vmName": {
                             "type": "string",
-                            "description": "Name of CCM Node"
+                            "description": "Name of CCM Node to be created"
                         },
                         "adminUsername": {
                             "type": "string",
-                            "description": "Name of admin corresponding to CCM Node"
+                            "description": "Admin username to be used to log into CCM Node"
                         },
                         "adminPasswordOrKey": {
                             "type": "string",
-                            "description": "Password or Public Key"
+                            "description": "Password or Public Key to be used to log into CCM Node"
                         },
                         "authenticationType": {
                             "type": "string",
@@ -228,32 +233,32 @@
                         },
                         "osDiskSize": {
                             "type": "integer",
-                            "description": "Size of OS Disk corresponding to CCM Node"
+                            "description": "OS Disk size of the CCM Node to be created"
                         },
                         "vmSize": {
                             "type": "string",
-                            "description": "Size of CCM Node"
+                            "description": "Size of CCM Node to be created"
                         },
                         "joinToken": {
                             "type": "string",
-                            "description": "Join Token"
+                            "description": "Join Token to be used by CCM Node to authenticate itself with CCM"
                         }
                     }
                 }
             },            
-            "description": "The request body parameters for fortanix compute node to be created"
+            "description": "The request body parameters for CCM Node to be created"
         },
-        "FortanixComputeNodeResponse": {
+        "CCMNodeResponse": {
             "properties": {
                 "properties": {
                     "type": "object",
-                    "description":"The definition of a created fortanix compute node",
+                    "description":"The definition of a created CCM Node",
                     "properties": {
                         "provisioningState": {
                             "type": "string",
                             "description": "Provisioning State of the deployment"
                         },
-                        "fortanixComputeNodeAgentRegion": {
+                        "ccmComputeNodeRegion": {
                             "type": "string",
                             "description": "Location of CCM Node"
                         },
