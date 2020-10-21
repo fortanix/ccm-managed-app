@@ -56,7 +56,13 @@
                 ],
                 "responses": {
                     "200": {
-                    "description": "OK response definition",
+                        "description": "OK response definition",
+                        "schema": {
+                            "$ref": "#/definitions/CCMNodeResponse"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted response definition",
                         "schema": {
                             "$ref": "#/definitions/CCMNodeResponse"
                         }
