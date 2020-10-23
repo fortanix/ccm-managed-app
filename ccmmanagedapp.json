@@ -17,7 +17,7 @@
     "security": [],
     "securityDefinitions": {},
     "paths": {
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomProviders/resourceproviders/public/ccmComputeNodeAgent/{customresourceid}": {
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomProviders/resourceproviders/public/confidentialComputingNodeAgent/{customresourceid}": {
             "put": {
                 "tags": [
                     "CCMManagedApp"
@@ -49,22 +49,16 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/CCMNodeRequestBody"
+                            "$ref": "#/definitions/ConfidentialComputingNodeRequestBody"
                         },
                         "description": "It defines the parameters to be present in request body"
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK response definition",
-                        "schema": {
-                            "$ref": "#/definitions/CCMNodeResponse"
-                        }
-                    },
                     "202": {
-                        "description": "Accepted response definition",
+                    "description": "Accepted response definition",
                         "schema": {
-                            "$ref": "#/definitions/CCMNodeResponse"
+                            "$ref": "#/definitions/ConfidentialComputingNodePutAsyncResponse"
                         }
                     },
                     "default": {
@@ -109,8 +103,11 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK response definition."
+                    "202": {
+                    "description": "Accepted response definition",
+                        "schema": {
+                            "$ref": "#/definitions/ConfidentialComputingNodeDeleteAsyncResponse"
+                        }
                     },
                     "204": {
                         "description": "OK resource was not found."
@@ -160,7 +157,7 @@
                     "200": {
                         "description": "OK response definition.",
                         "schema": {
-                            "$ref": "#/definitions/CCMNodeResponse"
+                            "$ref": "#/definitions/ConfidentialComputingNodeResponse"
                         }
                     },
                     "default": {
@@ -199,7 +196,249 @@
             },
             "description": "The error body contract."
         },
-        "CCMNodeRequestBody": {
+        "ConfidentialComputingNodePutAsyncResponse": {
+            "type": "object",
+            "properties": {
+                "properties": {
+                    "type": "object",
+                    "properties": {
+                        "provisioningState": {
+                            "type": "string"
+                        },
+                        "waitEndTime": {
+                            "type": "string"
+                        },
+                        "startTime": {
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string"
+                        },
+                        "correlation": {
+                            "type": "object",
+                            "properties": {
+                                "clientTrackingId": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "workflow": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "trigger": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "inputsLink": {
+                                    "type": "object",
+                                    "properties": {
+                                        "uri": {
+                                            "type": "string"
+                                        },
+                                        "contentSize": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "outputsLink": {
+                                    "type": "object",
+                                    "properties": {
+                                        "uri": {
+                                            "type": "string"
+                                        },
+                                        "contentSize": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "startTime": {
+                                    "type": "string"
+                                },
+                                "endTime": {
+                                    "type": "string"
+                                },
+                                "originHistoryName": {
+                                    "type": "string"
+                                },
+                                "correlation": {
+                                    "type": "object",
+                                    "properties": {
+                                        "clientTrackingId": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "response": {
+                            "type": "object",
+                            "properties": {
+                                "startTime": {
+                                    "type": "string"
+                                },
+                                "correlation": {
+                                    "type": "object",
+                                    "properties": {}
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "sku": {},
+                "kind": {},
+                "managedBy": {},
+                "plan": {},
+                "location": {},
+                "zones": {},
+                "etag": {},
+                "tags": {},
+                "scale": {}
+            }
+        },
+        "ConfidentialComputingNodeDeleteAsyncResponse": {
+            "type": "object",
+            "properties": {
+                "properties": {
+                    "type": "object",
+                    "properties": {
+                        "waitEndTime": {
+                            "type": "string"
+                        },
+                        "startTime": {
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string"
+                        },
+                        "correlation": {
+                            "type": "object",
+                            "properties": {
+                                "clientTrackingId": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "workflow": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "trigger": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "inputsLink": {
+                                    "type": "object",
+                                    "properties": {
+                                        "uri": {
+                                            "type": "string"
+                                        },
+                                        "contentSize": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "outputsLink": {
+                                    "type": "object",
+                                    "properties": {
+                                        "uri": {
+                                            "type": "string"
+                                        },
+                                        "contentSize": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "startTime": {
+                                    "type": "string"
+                                },
+                                "endTime": {
+                                    "type": "string"
+                                },
+                                "originHistoryName": {
+                                    "type": "string"
+                                },
+                                "correlation": {
+                                    "type": "object",
+                                    "properties": {
+                                        "clientTrackingId": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "response": {
+                            "type": "object",
+                            "properties": {
+                                "startTime": {
+                                    "type": "string"
+                                },
+                                "correlation": {
+                                    "type": "object",
+                                    "properties": {}
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "ConfidentialComputingNodeRequestBody": {
             "properties": {
                 "id": {
                     "type": "string",
@@ -215,46 +454,46 @@
                 },
                 "properties" :{
                     "type": "object",
-                    "description":"The definition of a created user",
+                    "description":"The definition of a created Confidential Computing Node",
                     "properties":{
-                        "ccmComputeNodeRegion": {
+                        "confidentialComputingNodeRegion": {
                             "type": "string",
-                            "description": "Location of CCM Node to be created"
+                            "description": "Location of Confidential Computing Node to be created"
                         },
                         "vmName": {
                             "type": "string",
-                            "description": "Name of CCM Node to be created"
+                            "description": "Name of Confidential Computing Node to be created"
                         },
                         "adminUsername": {
                             "type": "string",
-                            "description": "Admin username to be used to log into CCM Node"
+                            "description": "Admin username to be used to log into Confidential Computing Node"
                         },
                         "adminPasswordOrKey": {
                             "type": "string",
-                            "description": "Password or Public Key to be used to log into CCM Node"
+                            "description": "Password or Public Key to be used to log into Confidential Computing Node"
                         },
                         "authenticationType": {
                             "type": "string",
-                            "description": "Type of authentication to be used for CCM Node"
+                            "description": "Type of authentication to be used for Confidential Computing Node"
                         },
                         "osDiskSize": {
                             "type": "integer",
-                            "description": "OS Disk size of the CCM Node to be created"
+                            "description": "OS Disk size of the Confidential Computing Node to be created"
                         },
                         "vmSize": {
                             "type": "string",
-                            "description": "Size of CCM Node to be created"
+                            "description": "Size of Confidential Computing Node to be created"
                         },
                         "joinToken": {
                             "type": "string",
-                            "description": "Join Token to be used by CCM Node to authenticate itself with CCM"
+                            "description": "Join Token to be used by Confidential Computing Node to authenticate itself with CCM"
                         }
                     }
                 }
             },            
-            "description": "The request body parameters for CCM Node to be created"
+            "description": "The request body parameters for Confidential Computing Node to be created"
         },
-        "CCMNodeResponse": {
+        "ConfidentialComputingNodeResponse": {
             "properties": {
                 "properties": {
                     "type": "object",
@@ -264,7 +503,7 @@
                             "type": "string",
                             "description": "Provisioning State of the deployment"
                         },
-                        "ccmComputeNodeRegion": {
+                        "confidentialComputingNodeRegion": {
                             "type": "string",
                             "description": "Location of CCM Node"
                         },
