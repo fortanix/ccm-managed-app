@@ -1,6 +1,3 @@
-# This script is wrapper over confidential computing node agent installer. Based on the attestation type selected in CCM Managed App, az-dcap-client is installed in this script
-# This script is referenced from CCM Azure Managed App Templates
-
 #!/bin/bash
 
 install_az_dcap_client() {
