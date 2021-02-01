@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 install_az_dcap_client() {
   attestationType="$1"
