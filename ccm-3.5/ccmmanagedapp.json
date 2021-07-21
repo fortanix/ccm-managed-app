@@ -1,0 +1,604 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "2018-08-14-preview",
+        "title": "CCM Managed Application",
+        "description": "Confidential Computing Manager Managed Application API specification",
+        "contact": {
+            "name": "Fortanix Support",
+            "url": "https://support.fortanix.com/hc/en-us/categories/360003107511-Fortanix-Enclave-Manager",
+            "email": "support@fortanix.com"
+        }
+    },
+    "host": "management.azure.com",
+    "schemes": [
+        "https"
+    ],
+    "security": [],
+    "securityDefinitions": {},
+    "paths": {
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CustomProviders/resourceproviders/public/confidentialComputingNodeAgent/{customresourceid}": {
+            "put": {
+                "tags": [
+                    "CCMManagedApp"
+                ],
+                "operationId": "CustomProvidersCCMManagedApp_PUT",
+                "description": "Creates or updates a CCM Managed App",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "name": "resourceGroupName",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "The name of the resource group. The name is case insensitive.",
+                        "pattern": "^[-\\w\\._\\(\\)]+$",
+                        "minLength": 1,
+                        "maxLength": 90
+                    },
+                    {
+                        "$ref": "#/parameters/CustomResourceIdParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    },
+                    {
+                        "name": "parameters",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ConfidentialComputingNodeRequestBody"
+                        },
+                        "description": "It defines the parameters to be present in request body"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                    "description": "Accepted response definition",
+                        "schema": {
+                            "$ref": "#/definitions/ConfidentialComputingNodePutAsyncResponse"
+                        }
+                    },
+                    "default": {
+                        "schema": {
+                            "$ref": "#/definitions/CodeMessageError"
+                        },
+                        "description": "Error response definition."
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "CCMManagedApp"
+                ],
+                "operationId": "CustomProvidersCCMManagedApp_DELETE",
+                "description": "Deletes a CCM Managed Application",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "name": "resourceGroupName",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "The name of the resource group. The name is case insensitive.",
+                        "pattern": "^[-\\w\\._\\(\\)]+$",
+                        "minLength": 1,
+                        "maxLength": 90
+                    },
+                    {
+                        "$ref": "#/parameters/CustomResourceIdParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "202": {
+                    "description": "Accepted response definition",
+                        "schema": {
+                            "$ref": "#/definitions/ConfidentialComputingNodeDeleteAsyncResponse"
+                        }
+                    },
+                    "204": {
+                        "description": "OK resource was not found."
+                    },
+                    "default": {
+                        "schema": {
+                            "$ref": "#/definitions/CodeMessageError"
+                        },
+                        "description": "Error response definition."
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            },
+            "get": {
+                "tags": [
+                    "CCMManagedApp"
+                ],
+                "operationId": "CustomProvidersCCMManagedApp_GET",
+                "description": "Gets a CCM Managed Application",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/SubscriptionIdParameter"
+                    },
+                    {
+                        "name": "resourceGroupName",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": "The name of the resource group. The name is case insensitive.",
+                        "pattern": "^[-\\w\\._\\(\\)]+$",
+                        "minLength": 1,
+                        "maxLength": 90
+                    },
+                    {
+                        "$ref": "#/parameters/CustomResourceIdParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK response definition.",
+                        "schema": {
+                            "$ref": "#/definitions/ConfidentialComputingNodeResponse"
+                        }
+                    },
+                    "default": {
+                        "schema": {
+                            "$ref": "#/definitions/CodeMessageError"
+                        },
+                        "description": "Error response definition."
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "CodeMessageError": {
+            "properties": {
+                "error": {
+                    "type": "object",
+                    "properties": {
+                        "code": {
+                            "type": "string",
+                            "description": "The error type."
+                        },
+                        "message": {
+                            "type": "string",
+                            "description": "The error message."
+                        }
+                    },
+                    "description": "The error details for a failed request."
+                }
+            },
+            "description": "The error body contract."
+        },
+        "ConfidentialComputingNodePutAsyncResponse": {
+            "type": "object",
+            "properties": {
+                "properties": {
+                    "type": "object",
+                    "properties": {
+                        "provisioningState": {
+                            "type": "string"
+                        },
+                        "waitEndTime": {
+                            "type": "string"
+                        },
+                        "startTime": {
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string"
+                        },
+                        "correlation": {
+                            "type": "object",
+                            "properties": {
+                                "clientTrackingId": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "workflow": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "trigger": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "inputsLink": {
+                                    "type": "object",
+                                    "properties": {
+                                        "uri": {
+                                            "type": "string"
+                                        },
+                                        "contentSize": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "outputsLink": {
+                                    "type": "object",
+                                    "properties": {
+                                        "uri": {
+                                            "type": "string"
+                                        },
+                                        "contentSize": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "startTime": {
+                                    "type": "string"
+                                },
+                                "endTime": {
+                                    "type": "string"
+                                },
+                                "originHistoryName": {
+                                    "type": "string"
+                                },
+                                "correlation": {
+                                    "type": "object",
+                                    "properties": {
+                                        "clientTrackingId": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "response": {
+                            "type": "object",
+                            "properties": {
+                                "startTime": {
+                                    "type": "string"
+                                },
+                                "correlation": {
+                                    "type": "object",
+                                    "properties": {}
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "sku": {},
+                "kind": {},
+                "managedBy": {},
+                "plan": {},
+                "location": {},
+                "zones": {},
+                "etag": {},
+                "tags": {},
+                "scale": {}
+            }
+        },
+        "ConfidentialComputingNodeDeleteAsyncResponse": {
+            "type": "object",
+            "properties": {
+                "properties": {
+                    "type": "object",
+                    "properties": {
+                        "waitEndTime": {
+                            "type": "string"
+                        },
+                        "startTime": {
+                            "type": "string"
+                        },
+                        "status": {
+                            "type": "string"
+                        },
+                        "correlation": {
+                            "type": "object",
+                            "properties": {
+                                "clientTrackingId": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "workflow": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "trigger": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "inputsLink": {
+                                    "type": "object",
+                                    "properties": {
+                                        "uri": {
+                                            "type": "string"
+                                        },
+                                        "contentSize": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "outputsLink": {
+                                    "type": "object",
+                                    "properties": {
+                                        "uri": {
+                                            "type": "string"
+                                        },
+                                        "contentSize": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "startTime": {
+                                    "type": "string"
+                                },
+                                "endTime": {
+                                    "type": "string"
+                                },
+                                "originHistoryName": {
+                                    "type": "string"
+                                },
+                                "correlation": {
+                                    "type": "object",
+                                    "properties": {
+                                        "clientTrackingId": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "response": {
+                            "type": "object",
+                            "properties": {
+                                "startTime": {
+                                    "type": "string"
+                                },
+                                "correlation": {
+                                    "type": "object",
+                                    "properties": {}
+                                },
+                                "status": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "ConfidentialComputingNodeRequestBody": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Resource Id"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Resource name"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Resource type"
+                },
+                "properties" :{
+                    "type": "object",
+                    "description":"The definition of a created Confidential Computing Node",
+                    "properties":{
+                        "confidentialComputingNodeRegion": {
+                            "type": "string",
+                            "description": "Location of Confidential Computing Node to be created"
+                        },
+                        "vmName": {
+                            "type": "string",
+                            "description": "Name of Confidential Computing Node to be created"
+                        },
+                        "adminUsername": {
+                            "type": "string",
+                            "description": "Admin username to be used to log into Confidential Computing Node"
+                        },
+                        "adminPasswordOrKey": {
+                            "type": "string",
+                            "description": "Password or Public Key to be used to log into Confidential Computing Node"
+                        },
+                        "authenticationType": {
+                            "type": "string",
+                            "description": "Type of authentication to be used for Confidential Computing Node"
+                        },
+                        "osType": {
+                            "type": "string",
+                            "description": "OS for the node"
+                        },
+                        "osDiskSize": {
+                            "type": "integer",
+                            "description": "OS Disk size of the Confidential Computing Node to be created"
+                        },
+                        "vmSize": {
+                            "type": "string",
+                            "description": "Size of Confidential Computing Node to be created"
+                        },
+                        "joinToken": {
+                            "type": "string",
+                            "description": "Join Token to be used by Confidential Computing Node to authenticate itself with CCM"
+                        },
+                        "attestationType": {
+                            "type": "string",
+                            "description": "Attestation Type to be used by Confidential Computing Node"
+                        }
+                    }
+                }
+            },            
+            "description": "The request body parameters for Confidential Computing Node to be created"
+        },
+        "ConfidentialComputingNodeResponse": {
+            "properties": {
+                "properties": {
+                    "type": "object",
+                    "description":"The definition of a created CCM Node",
+                    "properties": {
+                        "provisioningState": {
+                            "type": "string",
+                            "description": "Provisioning State of the deployment"
+                        },
+                        "confidentialComputingNodeRegion": {
+                            "type": "string",
+                            "description": "Location of CCM Node"
+                        },
+                        "vmName": {
+                            "type": "string",
+                            "description": "Name of CCM Node"
+                        },
+                        "adminUsername": {
+                            "type": "string",
+                            "description": "Name of admin corresponding to CCM Node"
+                        },
+                        "authenticationType": {
+                            "type": "string",
+                            "description": "Type of authentication to be used for CCM Node"
+                        },
+                        "osType": {
+                            "type": "string",
+                            "description": "OS for the node"
+                        },
+                        "osDiskSize": {
+                            "type": "integer",
+                            "description": "Size of OS Disk corresponding to CCM Node"
+                        },
+                        "vmSize": {
+                            "type": "string",
+                            "description": "Size of CCM Node"
+                        },
+                        "attestationType": {
+                            "type": "string",
+                            "description": "Attestation Type to be used by Confidential Computing Node"
+                        },
+                        "deploymentHash": {
+                            "type": "string",
+                            "description": "Hash of the deployment"
+                        }
+                    }
+                }
+            },
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CommonResource"
+                }
+            ]
+        },
+        "CommonResource": {
+            "properties": {
+                "id": {
+                    "readOnly": true,
+                    "type": "string",
+                    "description": "Resource Id"
+                },
+                "name": {
+                    "readOnly": true,
+                    "type": "string",
+                    "description": "Resource name"
+                },
+                "type": {
+                    "readOnly": true,
+                    "type": "string",
+                    "description": "Resource type"
+                }
+            },
+            "description": "The resource definition.",
+            "x-ms-azure-resource": true
+        }
+    },
+    "parameters": {
+        "SubscriptionIdParameter": {
+            "name": "subscriptionId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+        },
+        "ApiVersionParameter": {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Client Api Version."
+        },
+        "CustomResourceIdParameter": {
+            "name": "customresourceid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The ID of the Custom Resource."
+        }
+    }
+}
